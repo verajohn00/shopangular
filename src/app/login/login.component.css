@@ -1,0 +1,9 @@
+.container-fluid{
+    background-image: url('/assets/images/login-fondo.jpg');
+    height: 100%;
+    color: white;    
+}
+
+.container{
+    padding: 15px;
+}

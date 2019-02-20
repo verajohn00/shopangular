@@ -1,0 +1,12 @@
+
+
+.container{
+    padding: 150px;
+}
+
+.btn-warning{
+    color:white;
+}
+input[type="number"]{
+    width: 70px;
+}

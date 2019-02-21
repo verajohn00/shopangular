@@ -3,10 +3,15 @@
     
     <nav class="navbar navbar-light bg-light justify-content-between">
         <a class="navbar-brand">La bodega</a>
-        <form class="form-inline">
+        <ul class="mr-sm-2 inline">
+            <li><a (click)="verproductos()"><span class="glyphicon glyphicon-search">Productos</span></a></li>
+            <li><a href="./carrito"><span class="glyphicon glyphicon-search">Carrito</span></a></li>
+            <li><a href="./"><span class="glyphicon glyphicon-search">Cerrar sesión</span></a></li>
+        </ul>
+        <!--form class="form-inline">
           <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+        </form-->
     </nav>
     
     <div class="container-fluid">
@@ -15,44 +20,29 @@
             <h3>Inicia Sesión</h3>
         </div>
     </div>
-    <div class="row">
-        <div class="col-12 col-sm-12 col-md-3">
-            <div class="card">
-                <img class="card-img-top" src="./assets/images/aguacate.jpg" alt="Aguacate">
+    <div class="row" *ngIf="flagProductos">
+        <div class="col-12 col-sm-12 col-md-3" *ngFor="let item of productos; let i = index">
+             <div class="card" style="margin-bottom: 10px;">
+                <img class="card-img-top" src="http://xatsaautopartes.xyz/Api/images/{{item.imagen}}" alt="{{item.imagen}}">
                 <div class="card-body">
-                  <h5 class="card-title">Aguacate</h5>
+                  <h5 class="card-title">{{item.nombre}}</h5>
                   <p class="card-text">
-                      Precio: $10
+                      Precio: ${{item.precio}}
                       <br>
-                      Unidades disponibles: 46
+                      Unidades disponibles: {{item.cantidad}}
                   </p>
-                  <a href="#" class="btn btn-primary">Ver más</a>
+                  <button class="btn btn-primary" (click)="showDetalle(i)">Ver más</button>
                   <div class="float-right">
-                    <a href="#" class="btn btn-warning">Añadir</a>
-                    
-                    <input type="number" size="10">
-                  </div>
-                </div>
-            </div>
-        </div>   
-        <div class="col-12 col-sm-12 col-md-3">
-            <div class="card">
-                <img class="card-img-top" src="./assets/images/aguacate.jpg" alt="Aguacate">
-                <div class="card-body">
-                  <h5 class="card-title">Aguacate</h5>
-                  <p class="card-text">
-                      Precio: $10
-                      <br>
-                      Unidades disponibles: 46
-                  </p>
-                  <a href="#" class="btn btn-primary">Ver más</a>
-                  <div class="float-right">
-                    <a href="#" class="btn btn-warning">Añadir</a>                    
-                  <input type="number" size="10">
+                    <button class="btn btn-warning" (click)="addProduct(i)">Añadir</button>                    
+                    <input type="number" size="10" (change)="saveItem($event.target.value)">
                   </div>
                 </div>
             </div>
         </div>
     </div>
+    
+    <app-vista-producto *ngIf="elementoView"></app-vista-producto>
+
     </div>
 </div>
+

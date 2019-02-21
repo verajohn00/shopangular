@@ -9,23 +9,64 @@ import { HttpService } from '../http.service';
 
 export class ProductosComponent {
 
+    public productos: any[] = [];
+    public carrito: any[] = [];
+    public flagProductos = false;
+    public items: any[] = [];
+    public cartTemp = 0;
+    public elemento: any;
+    public elementoView = false;
+
     constructor(private http : HttpService) {
-        this.getProductos();
+        this.productos = this.getProductos();
     }
 
     getProductos(){
-
         this.http.getDatos()
             .subscribe(
                 data => {
                     let aux: any[] = [];
-                    //for(let key in data){
-                    //    aux.push(key.id)
-                    //}
-                    //this.usuarios = aux;
-                    console.log(data);
+                    for(let key in data){
+                        aux.push(data[key])
+                    }
+                    this.productos = aux;
+                    this.flagProductos = true;
                 }
             )
-        //return this.usuarios
+        return this.productos;
+    }
+    
+    addProduct(id){
+        console.log(this.productos[id].cantidad);
+        console.log(this.cartTemp);
+    
+        if(this.cartTemp > parseInt(this.productos[id].cantidad)){
+            alert("No hay disponibilidad de productos.");
+        }else{
+            this.carrito.push({"producto":this.productos[id],"cantidad":this.cartTemp});
+            this.http.changeMessage(this.carrito);  
+            this.http.setOption(id, {"producto":this.productos[id],"cantidad":this.cartTemp});            
+            //this.http.currentMessage.subscribe(carrito => this.carrito = carrito)
+            alert("Producto agregado al carrito.");
+        }
+    }
+    
+    saveItem(value){
+        this.cartTemp = value;
+    }
+    
+    showDetalle(index){        
+        this.http.elemento = this.productos[index];
+        this.elementoView = true;
+        this.flagProductos = false;
+    }
+    
+    verproductos(){
+        this.flagProductos = true;
+        this.elementoView = false;
+    }
+    
+    vercarrito(){
+        
     }
 }

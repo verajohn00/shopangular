@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../http.service';
+import { CarritoService } from '../carrito.service';
 
 @Component({
   selector: 'app-carrito',
@@ -8,17 +9,17 @@ import { HttpService } from '../http.service';
 })
 export class CarritoComponent implements OnInit {
 
-    public carrito: any[] = []; 
-  public data;  
+    public data;  
+    public total; 
   
-    constructor(private http : HttpService) {
-        this.http.currentMessage.subscribe(carrito => this.carrito = carrito);
-        this.data = this.http.getOption();
+    constructor(private shop: CarritoService) {
+        this.data = this.shop.getOption();
+        this.total = this.shop.totalCarrito;
+        
         console.log(this.data);
     }
 
     ngOnInit() {
        
     }
-
 }

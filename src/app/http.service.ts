@@ -8,29 +8,8 @@ import { BehaviorSubject } from 'rxjs';
 })
 
 export class HttpService {
-
-  public carrito: any[] = []; 
-  public elemento: any; 
-  private data = {};  
-
-  private messageSource = new BehaviorSubject([]);
-  currentMessage = this.messageSource.asObservable();
-  
-  constructor(private http : HttpClient) { }
-  
-  changeMessage(message: any[]) {
-    this.messageSource.next(message)
-  }
-
-    
-  
-    setOption(option, value) {      
-       this.data[option] = value;  
-     }  
-
-     getOption() {  
-       return this.data;  
-     }  
+ 
+  constructor(private http : HttpClient) { }    
       
   getDatos(){
         const httpOptions = {

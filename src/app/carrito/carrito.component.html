@@ -1,3 +1,61 @@
-<p>
-  carrito works!
-</p>
+
+<div class="container-fluid">
+    
+
+    <app-navmenu></app-navmenu>
+    
+    <div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <h3>Carrito de compras</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-sm-6">
+            <div class="col-12" *ngFor="let item of data;">
+                 <div class="row">
+                     <div class="col-3">
+                        <img class="image-responsive" src="http://xatsaautopartes.xyz/Api/images/{{item['p']['imagen']}}" alt="{{item['p']['imagen']}}">                         
+                     </div>
+                     <div class="col-9">
+                         <h5>{{item['p']["nombre"]}}</h5>
+                         <p>Unidades: {{item["pedido"]}}</p>
+                     </div>
+                </div>
+                 <div class="row">
+                     <div class="col-12">
+                        <p>
+                            Subtotal:$ {{item['total']}}
+                        </p>
+                     </div>
+                </div>
+                 <!--div class="card" style="margin-bottom: 10px;">
+                    <div class="card-body">
+                      <h5 class="card-title">{{item['p']["nombre"]}}</h5>
+                      <p class="card-text">
+                          Precio: ${{item['p']["precio"]}}
+                          <br>
+                          Unidades pedidas: {{item["pedido"]}}
+                          <br>
+                          Total: {{item['total']}}
+
+                      </p>
+                      <!--button class="btn btn-primary" (click)="showDetalle(i)">Ver más</button>
+                      <div class="float-right">
+                        <button class="btn btn-warning" (click)="addProduct(i)">Añadir</button>                    
+                        <input type="number" size="10" (change)="saveItem($event.target.value)">
+                      </div>
+                    </div>
+                </div-->
+            </div>
+        </div>
+        <div class="col-12 col-sm-6">
+            <h2>Total a pagar: <strong>${{total}}</strong></h2>
+            <button class="btn btn-danger">Cancelar</button>
+            <button class="btn btn-info">Pagar</button>
+        </div>
+    </div>
+    
+    </div>
+</div>
+

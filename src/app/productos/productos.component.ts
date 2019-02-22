@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../http.service';
+import { CarritoService } from '../carrito.service';
 
 @Component({
   selector: 'app-productos',
@@ -17,7 +18,7 @@ export class ProductosComponent {
     public elemento: any;
     public elementoView = false;
 
-    constructor(private http : HttpService) {
+    constructor(private http : HttpService, private shop: CarritoService) {
         this.productos = this.getProductos();
     }
 
@@ -31,8 +32,11 @@ export class ProductosComponent {
                     }
                     this.productos = aux;
                     this.flagProductos = true;
+                    console.log(this.productos);
+
                 }
             )
+
         return this.productos;
     }
     
@@ -43,10 +47,8 @@ export class ProductosComponent {
         if(this.cartTemp > parseInt(this.productos[id].cantidad)){
             alert("No hay disponibilidad de productos.");
         }else{
-            this.carrito.push({"producto":this.productos[id],"cantidad":this.cartTemp});
-            this.http.changeMessage(this.carrito);  
-            this.http.setOption(id, {"producto":this.productos[id],"cantidad":this.cartTemp});            
-            //this.http.currentMessage.subscribe(carrito => this.carrito = carrito)
+            this.carrito.push([{"producto":this.productos[id],"cantidad":this.cartTemp}]);
+            this.shop.setOption(this.productos[id],this.cartTemp);
             alert("Producto agregado al carrito.");
         }
     }
@@ -56,14 +58,9 @@ export class ProductosComponent {
     }
     
     showDetalle(index){        
-        this.http.elemento = this.productos[index];
+        this.shop.elemento = this.productos[index];
         this.elementoView = true;
         this.flagProductos = false;
-    }
-    
-    verproductos(){
-        this.flagProductos = true;
-        this.elementoView = false;
     }
     
     vercarrito(){

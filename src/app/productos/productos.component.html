@@ -1,27 +1,25 @@
-
+<div class="bodyFull">
 <div class="container-fluid">
     
-    <nav class="navbar navbar-light bg-light justify-content-between">
-        <a class="navbar-brand">La bodega</a>
-        <ul class="mr-sm-2 inline">
-            <li><a (click)="verproductos()"><span class="glyphicon glyphicon-search">Productos</span></a></li>
-            <li><a href="./carrito"><span class="glyphicon glyphicon-search">Carrito</span></a></li>
-            <li><a href="./"><span class="glyphicon glyphicon-search">Cerrar sesión</span></a></li>
-        </ul>
-        <!--form class="form-inline">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form-->
-    </nav>
+    <div class="container prods">
+        <app-navmenu></app-navmenu>
+    </div>
+    <br>
     
-    <div class="container-fluid">
-    <div class="row">
-        <div class="col-12">
-            <h3>Inicia Sesión</h3>
+    <div class="container prods">
+    <div class="row padding">
+        <div class="col-6">
+            <h3>Catálogo de productos</h3>
+        </div>
+        <div class="col-6 float-right">
+            <h5>¿Qué estas buscando?</h5>
+            <input type="text" placeholder="Buscar producto" [(ngModel)]="query">
         </div>
     </div>
+    <div class="row" style="overflow-y: scroll; height: 370px;">
     <div class="row" *ngIf="flagProductos">
-        <div class="col-12 col-sm-12 col-md-3" *ngFor="let item of productos; let i = index">
+        <!--div class="col-12 col-sm-12 col-md-3" ng-repeat="item in productos | filter:searchText"-->
+        <div class="col-12 col-sm-12 col-md-3" *ngFor="let item of productos | filter: query:'nombre'; let i = index">
              <div class="card" style="margin-bottom: 10px;">
                 <img class="card-img-top" src="http://xatsaautopartes.xyz/Api/images/{{item.imagen}}" alt="{{item.imagen}}">
                 <div class="card-body">
@@ -40,9 +38,10 @@
             </div>
         </div>
     </div>
-    
+    </div>
     <app-vista-producto *ngIf="elementoView"></app-vista-producto>
 
     </div>
 </div>
 
+</div>

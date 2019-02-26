@@ -1,9 +1,19 @@
 img{
     height: 80%;
-    width: 80%;
+    width: 80px;
 }
 
 button{
     width: 120px;
     margin-left: 10px;
+}
+
+.container{
+}
+.container-fluid{
+    min-height:100vh;
+    background-repeat: no-repeat;
+    background-image: url('/assets/images/main-fondo.jpg');
+    height: 100%;
+    background-size: 100% 100%;
 }

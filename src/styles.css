@@ -1,5 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
-body{
-    height: 100%;
+html,body{
+    
+    min-height: 100%;
+    height: auto;
     margin: 0;
+}
+
+.backwhite{
+    background-color: white;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.padding{
+    padding: 40px;
 }

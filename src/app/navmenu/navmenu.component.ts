@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CarritoService } from '../carrito.service';
 
 @Component({
   selector: 'app-navmenu',
@@ -7,12 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavmenuComponent implements OnInit {
 
-  constructor() { }
+    public contador = 0;
 
-  ngOnInit() {
-  }
-  
-      
+    constructor(private shop: CarritoService) { 
+        this.contador = this.shop.getOption().length;
+    }
+
+    ngOnInit() {
+    
+    }
+        
     verproductos(){
         //this.flagProductos = true;
         //this.elementoView = false;

@@ -5,7 +5,6 @@ import { Injectable } from '@angular/core';
 })
 export class CarritoService {
 
-    public carrito: any[] = []; 
     public elemento: any; 
     private data = [];  
     public totalCarrito = 0.0;
@@ -22,4 +21,8 @@ export class CarritoService {
     getOption() {  
         return this.data;  
     }     
+    
+    destroyOption(){
+        this.data = [];
+    }
 }

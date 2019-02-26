@@ -10,9 +10,11 @@ import { CarritoService } from '../carrito.service';
 export class VistaProductoComponent implements OnInit {
 
     public elemento: any;
-  
-    constructor(private shop : CarritoService) {
-        console.log(this.shop.carrito);
+    public utlLocal = "";
+
+    constructor(private shop : CarritoService,private http : HttpService) {
+        //console.log(this.shop.carrito);
+        this.utlLocal = http.url;
     }
 
     ngOnInit() {
@@ -22,4 +24,6 @@ export class VistaProductoComponent implements OnInit {
     onDestroy(){
         //this.elemento = any;
     }
+    
+
 }

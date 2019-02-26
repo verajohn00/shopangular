@@ -1,13 +1,10 @@
-<div class="bodyFull">
-<div class="container-fluid">
-    
-    <div class="container prods">
-        <app-navmenu></app-navmenu>
-    </div>
+<div class="container-fluid">    
+
+    <app-navmenu></app-navmenu>
     <br>
     
-    <div class="container prods">
-    <div class="row padding">
+    <div class="padding backwhite">
+    <div class="row padding" *ngIf="flagProductos">
         <div class="col-6">
             <h3>Catálogo de productos</h3>
         </div>
@@ -16,12 +13,12 @@
             <input type="text" placeholder="Buscar producto" [(ngModel)]="query">
         </div>
     </div>
-    <div class="row" style="overflow-y: scroll; height: 370px;">
-    <div class="row" *ngIf="flagProductos">
+    <div class="row scroll" *ngIf="flagProductos">
+    <div class="row fullwidth" *ngIf="flagProductos">
         <!--div class="col-12 col-sm-12 col-md-3" ng-repeat="item in productos | filter:searchText"-->
-        <div class="col-12 col-sm-12 col-md-3" *ngFor="let item of productos | filter: query:'nombre'; let i = index">
+        <div class="col-12 col-sm-12 col-md-4" *ngFor="let item of productos | filter: query:'nombre'; let i = index">
              <div class="card" style="margin-bottom: 10px;">
-                <img class="card-img-top" src="http://xatsaautopartes.xyz/Api/images/{{item.imagen}}" alt="{{item.imagen}}">
+                <img class="card-img-top" src="{{utlLocal}}/images/{{item.imagen}}" alt="{{item.imagen}}">
                 <div class="card-body">
                   <h5 class="card-title">{{item.nombre}}</h5>
                   <p class="card-text">
@@ -39,9 +36,11 @@
         </div>
     </div>
     </div>
+        
     <app-vista-producto *ngIf="elementoView"></app-vista-producto>
-
+    <div class="row padding" *ngIf="elementoView">            
+        <button (click)="regresar()" class="btn btn-warning">Regresar</button>
     </div>
-</div>
-
+    
+    </div>
 </div>

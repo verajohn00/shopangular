@@ -1,9 +1,16 @@
 .container-fluid{
+    min-height:100vh;
     background-image: url('/assets/images/login-fondo.jpg');
     height: 100%;
     color: white;    
+    background-size: 100% 100%;
 }
 
 .container{
     padding: 15px;
+}
+
+.top{
+        margin-top: 50px;
+
 }

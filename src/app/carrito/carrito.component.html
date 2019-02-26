@@ -1,10 +1,9 @@
 
 <div class="container-fluid">
     
-
     <app-navmenu></app-navmenu>
-    
-    <div class="container-fluid">
+    <br>
+    <div class="padding backwhite">
     <div class="row">
         <div class="col-12">
             <h3>Carrito de compras</h3>
@@ -15,7 +14,7 @@
             <div class="col-12" *ngFor="let item of data;">
                  <div class="row">
                      <div class="col-3">
-                        <img class="image-responsive" src="http://xatsaautopartes.xyz/Api/images/{{item['p']['imagen']}}" alt="{{item['p']['imagen']}}">                         
+                        <img class="image-responsive" src="{{utlLocal}}/images/{{item['p']['imagen']}}" alt="{{item['p']['imagen']}}">                         
                      </div>
                      <div class="col-9">
                          <h5>{{item['p']["nombre"]}}</h5>
@@ -51,8 +50,8 @@
         </div>
         <div class="col-12 col-sm-6">
             <h2>Total a pagar: <strong>${{total}}</strong></h2>
-            <button class="btn btn-danger">Cancelar</button>
-            <button class="btn btn-info">Pagar</button>
+            <button class="btn btn-danger" (click)="cancelarCompra()">Cancelar</button>
+            <button class="btn btn-info" (click)="pagarCompra()">Pagar</button>
         </div>
     </div>
     

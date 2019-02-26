@@ -9,13 +9,15 @@ import { CarritoService } from '../carrito.service';
 export class NavmenuComponent implements OnInit {
 
     public contador = 0;
+    private data = [];
 
     constructor(private shop: CarritoService) { 
-        this.contador = this.shop.getOption().length;
     }
 
     ngOnInit() {
-    
+        console.log("init navmenu");
+        this.shop.getEmittedValue()
+            .subscribe(item => this.contador = item.length);
     }
         
     verproductos(){

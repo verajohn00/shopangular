@@ -9,8 +9,8 @@ import { BehaviorSubject } from 'rxjs';
 
 export class HttpService {
  
-    //public url = 'http://xatsaautopartes.xyz/Api'; 
-    public url = 'http://localhost/Api'; 
+    public url = 'http://xatsaautopartes.xyz/Api'; 
+    //public url = 'http://localhost/Api'; 
  
   constructor(private http : HttpClient) { }    
       
